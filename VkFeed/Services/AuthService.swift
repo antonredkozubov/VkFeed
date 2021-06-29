@@ -8,57 +8,66 @@
 import Foundation
 import VK_ios_sdk
 
-protocol AuthServiceDelegate: AnyObject {
-    func authServiceShouldShow(viewController: UIViewController)
-    func authServiceSingIn()
-    func authServiceSingInDidFalied()
+protocol AuthServiceDelegate: class {
+    func authServiceShouldShow(_ viewController: UIViewController)
+    func authServiceSignIn()
+    func authServiceDidSignInFail()
 }
-class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
 
-    private let appID = "7890665"
+final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
+    
+    private let appId = "6869574"
     private let vkSdk: VKSdk
 
     weak var delegate: AuthServiceDelegate?
 
+    var token: String? {
+        return VKSdk.accessToken()?.accessToken
+    }
+
     override init() {
-        vkSdk = VKSdk.initialize(withAppId: appID)
+        vkSdk = VKSdk.initialize(withAppId: appId)
         super.init()
-        print("VKSdk init")
+        print("VKSdk.initialize")
         vkSdk.register(self)
         vkSdk.uiDelegate = self
     }
 
     func wakeUpSession() {
         let scope = ["offline"]
-        VKSdk.wakeUpSession(scope) { [delegate] (state, _) in
-            switch state {
-            case .authorized:
-                print("authorized")
-                delegate?.authServiceSingIn()
-            case .initialized:
-                print("initialized")
+
+        VKSdk.wakeUpSession(scope) { [delegate] (state, error) in
+            if state == VKAuthorizationState.authorized {
+                print("VKAuthorizationState.authorized")
+                delegate?.authServiceSignIn()
+            } else if state == VKAuthorizationState.initialized {
+                print("VKAuthorizationState.initialized")
                 VKSdk.authorize(scope)
-            default:
-                delegate?.authServiceSingInDidFalied()
+            } else {
+                print("auth problems, state \(state) error \(String(describing: error))")
+                delegate?.authServiceDidSignInFail()
             }
         }
     }
 
+    // MARK: VKSdkDelegate
+
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         print(#function)
         if result.token != nil {
-            delegate?.authServiceSingIn()
+            delegate?.authServiceSignIn()
         }
     }
 
     func vkSdkUserAuthorizationFailed() {
         print(#function)
-        delegate?.authServiceSingInDidFalied()
     }
+
+    // MARK: VkSdkUIDelegate
 
     func vkSdkShouldPresent(_ controller: UIViewController!) {
         print(#function)
-        delegate?.authServiceShouldShow(viewController: controller)
+        delegate?.authServiceShouldShow(controller)
     }
 
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {

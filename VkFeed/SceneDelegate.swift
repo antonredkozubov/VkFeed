@@ -65,20 +65,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     }
 
     // MARK: - AuthServiceDelegate
-    func authServiceShouldShow(viewController: UIViewController) {
+    func authServiceShouldShow(_ viewController: UIViewController) {
         print(#function)
         window?.rootViewController?.present(viewController, animated: true, completion: nil)
     }
 
-    func authServiceSingIn() {
+    func authServiceSignIn() {
         print(#function)
         let feedVC = FeedViewController()
         let navVC = UINavigationController(rootViewController: feedVC)
         window?.rootViewController = navVC
     }
 
-    func authServiceSingInDidFalied() {
+    func authServiceDidSignInFail() {
         print(#function)
     }
-
 }
