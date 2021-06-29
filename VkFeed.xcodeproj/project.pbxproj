@@ -14,6 +14,7 @@
 		ED63994C268A006100A5D030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63994B268A006100A5D030 /* Assets.xcassets */; };
 		ED63994F268A006100A5D030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED63994D268A006100A5D030 /* LaunchScreen.storyboard */; };
 		ED639958268A07A100A5D030 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED639957268A07A100A5D030 /* AuthService.swift */; };
+		ED63995B268B1CB600A5D030 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63995A268B1CB600A5D030 /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		ED63994E268A006100A5D030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED639950268A006100A5D030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED639957268A07A100A5D030 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		ED63995A268B1CB600A5D030 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EF1208C91E69D4A749956962 /* Pods-VkFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VkFeed.release.xcconfig"; path = "Target Support Files/Pods-VkFeed/Pods-VkFeed.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 			children = (
 				ED639942268A005E00A5D030 /* AppDelegate.swift */,
 				ED639944268A005E00A5D030 /* SceneDelegate.swift */,
+				ED63995A268B1CB600A5D030 /* FeedViewController.swift */,
 				ED639946268A005E00A5D030 /* AuthViewController.swift */,
 				ED63994B268A006100A5D030 /* Assets.xcassets */,
 				ED63994D268A006100A5D030 /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 			files = (
 				ED639947268A005E00A5D030 /* AuthViewController.swift in Sources */,
 				ED639943268A005E00A5D030 /* AppDelegate.swift in Sources */,
+				ED63995B268B1CB600A5D030 /* FeedViewController.swift in Sources */,
 				ED639945268A005E00A5D030 /* SceneDelegate.swift in Sources */,
 				ED639958268A07A100A5D030 /* AuthService.swift in Sources */,
 			);
